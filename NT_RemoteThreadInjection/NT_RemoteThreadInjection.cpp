@@ -8,7 +8,7 @@ int Error(const char* str) {
 }
 
 int main(int argc, const char* argv[]) {
-	unsigned char shellcode[] = "\0x41\0x41\0x41\0x41\0x41\0x41";
+	unsigned char shellcode[] = "\x41\x41\x41\x41\x41\x41";
 
 	if (argc < 2)
 	{
@@ -47,7 +47,6 @@ int main(int argc, const char* argv[]) {
 	status = NtCT(&hThread, GENERIC_EXECUTE, NULL, hProcess, allocation_start, &allocationsize, FALSE, NULL, NULL, NULL, NULL);
 
 	WaitForSingleObject(hThread, 5000);
-	// VirtualFreeEx(hProcess, buffer, 0, MEM_RELEASE);
 	CloseHandle(hProcess);
 
 	return 0;
